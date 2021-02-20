@@ -34,3 +34,21 @@ Route::get('/core', function(){
     return $response->json();
 
 })->name('core.api');
+
+
+Route::get('/word', function(){
+   
+    $access_key = config('services.secrets.word');
+    $app_id = config('services.secrets.wordapp');
+    
+    $response = Http::withHeaders([
+            "Accept" => "application/json",
+            "app_id" => $app_id,
+            "app_key"=> $access_key
+    ])->get('https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?strictMatch=false');
+
+    dd($response->json());
+
+    return $response->json();
+
+})->name('core.api');

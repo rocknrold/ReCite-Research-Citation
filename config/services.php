@@ -33,6 +33,7 @@ return [
     'secrets' => [
         'core' => env('CORE_SECRET_ACCESS_KEY'),
         'word' => env('WORDS_SECRET_ACCESS_KEY'),
+        'wordapp'  => env('WORDS_APP_ID'),
     ],
 
 ];
