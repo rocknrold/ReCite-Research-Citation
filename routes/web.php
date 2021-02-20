@@ -21,13 +21,16 @@ Route::get('/core', function(){
    
     $access_key = config('services.secrets.core');
 
-   $myreq = "title:(web scrape or web) AND year:2019";
-
-
-    $response = Http::get('https://core.ac.uk:443/api-v2/search/title%3A%22web%20content%20analysis%22%20AND%20year%3A2019?page=1&pageSize=10&apiKey='. config('services.secrets.core').'');
+    $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
+            ["query" => "title:(web content analysis for ads) AND year:2021",
+            "page" => 1,
+            "pageSize" => 10,
+            "scrollId" => "",]
+        ]);
+    
 
     dd($response->json());
 
     return $response->json();
-    
+
 })->name('core.api');

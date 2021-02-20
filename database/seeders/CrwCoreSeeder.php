@@ -16,8 +16,16 @@ class CrwCoreSeeder extends Seeder
     {
         $access_key = config('services.secrets.core');
 
-        $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='+ $access_key +'');
-
-
+        $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
+                ["query" => "title:(web content analysis for ads) AND year:2021",
+                "page" => 1,
+                "pageSize" => 10,
+                "scrollId" => "",]
+            ]);
+        
+    
+        dd($response->json());
+    
+        return $response->json();
     }
 }
