@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,22 @@ Route::get('/word', function(){
 
     return $response->json();
 
-})->name('core.api');
+})->name('word.api');
+
+
+Route::post('/try',function(Request $request){
+    $query = $request['query'];
+
+    $access_key = config('services.secrets.word');
+    $app_id = config('services.secrets.wordapp');
+    
+    $response = Http::withHeaders([
+            "Accept" => "application/json",
+            "app_id" => $app_id,
+            "app_key"=> $access_key
+    ])->get('https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/'.$query.'?strictMatch=false');
+
+    dd($response->json());
+
+    return $response->json();
+})->name('try.search');

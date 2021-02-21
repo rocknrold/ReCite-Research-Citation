@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Crw_word extends Model
 {
     use HasFactory;
+
+    public function search()
+    {
+        return $this->hasOne(Crw_search::class);
+    }
 }
