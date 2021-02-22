@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Crw_core;
+use App\Models\Crw_search;
+use App\Models\Crw_word;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CrwCoreController extends Controller
 {
@@ -12,74 +15,55 @@ class CrwCoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function searchCoreLibrary(Request $request)
     {
-        //
-    }
+        $keyword= request()->post('query');
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        // $access_key = config('services.secrets.core');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // $query = "title:($keyword)";
+    
+        // $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
+        //         ["query" => $query,
+        //         "page" => 1,
+        //         "pageSize" => 10,
+        //         "scrollId" => "",]
+        //     ]);
+    
+        // $dictionaryLookup = Crw_search::dictionaryLookup($keyword);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Crw_core  $crw_core
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Crw_core $crw_core)
-    {
-        //
-    }
+        // $validateWord = Crw_search::checkUserWord($keyword, $dictionaryLookup);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Crw_core  $crw_core
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Crw_core $crw_core)
-    {
-        //
-    }
+        // $validateCore = Crw_core::validateLibraryResponse($response->json());
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Crw_core  $crw_core
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Crw_core $crw_core)
-    {
-        //
-    }
+        // if($validateCore)
+        // {
+        //     if($validateWord)
+        //     {
+        //         $searchesId = Crw_search::saveSearch($keyword);
+    
+        //         if(array_key_exists('definition', $dictionaryLookup))
+        //         {
+        //             $wordDescription = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions'][0];    
+        //         }else { $wordDescription = $keyword;}
+    
+        //         if(array_key_exists('synonyms', $dictionaryLookup))
+        //         {
+        //             $wordSynonym = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms'][0]['text'];
+        //         }else { $wordSynonym = $keyword;}
+    
+        //         Crw_word::createWordDefinition($searchesId, $wordDescription, $wordSynonym);
+        //     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Crw_core  $crw_core
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Crw_core $crw_core)
-    {
-        //
+        //     $message = $response->json();
+
+        // } else {
+                // $msg = array('error' => 'No Results Found Check For Any Error!');
+                // $message = $msg;
+        // }
+
+        // dd($keyword);
+            // $message = $dictionaryLookup;
+        return response()->json($keyword);
     }
 }
