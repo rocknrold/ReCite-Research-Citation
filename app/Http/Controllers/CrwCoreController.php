@@ -19,51 +19,51 @@ class CrwCoreController extends Controller
     {
         $keyword= request()->post('query');
 
-        // $access_key = config('services.secrets.core');
+        $access_key = config('services.secrets.core');
 
-        // $query = "title:($keyword)";
+        $query = "title:($keyword)";
     
-        // $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
-        //         ["query" => $query,
-        //         "page" => 1,
-        //         "pageSize" => 10,
-        //         "scrollId" => "",]
-        //     ]);
+        $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
+                ["query" => $query,
+                "page" => 1,
+                "pageSize" => 10,
+                "scrollId" => "",]
+            ]);
     
-        // $dictionaryLookup = Crw_search::dictionaryLookup($keyword);
+        $dictionaryLookup = Crw_search::dictionaryLookup($keyword);
 
-        // $validateWord = Crw_search::checkUserWord($keyword, $dictionaryLookup);
+        $validateWord = Crw_search::checkUserWord($keyword, $dictionaryLookup);
 
-        // $validateCore = Crw_core::validateLibraryResponse($response->json());
+        $validateCore = Crw_core::validateLibraryResponse($response->json());
 
-        // if($validateCore)
-        // {
-        //     if($validateWord)
-        //     {
-        //         $searchesId = Crw_search::saveSearch($keyword);
+        if($validateCore)
+        {
+            if($validateWord)
+            {
+                $searchesId = Crw_search::saveSearch($keyword);
     
-        //         if(array_key_exists('definition', $dictionaryLookup))
-        //         {
-        //             $wordDescription = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions'][0];    
-        //         }else { $wordDescription = $keyword;}
+                if(array_key_exists('definition', $dictionaryLookup))
+                {
+                    $wordDescription = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions'][0];    
+                }else { $wordDescription = $keyword;}
     
-        //         if(array_key_exists('synonyms', $dictionaryLookup))
-        //         {
-        //             $wordSynonym = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms'][0]['text'];
-        //         }else { $wordSynonym = $keyword;}
+                if(array_key_exists('synonyms', $dictionaryLookup))
+                {
+                    $wordSynonym = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms'][0]['text'];
+                }else { $wordSynonym = $keyword;}
     
-        //         Crw_word::createWordDefinition($searchesId, $wordDescription, $wordSynonym);
-        //     }
+                Crw_word::createWordDefinition($searchesId, $wordDescription, $wordSynonym);
+            }
 
-        //     $message = $response->json();
+            $message = $response->json();
 
-        // } else {
-                // $msg = array('error' => 'No Results Found Check For Any Error!');
-                // $message = $msg;
-        // }
+        } else {
+                $msg = array('error' => 'No Results Found Check For Any Error!');
+                $message = $msg;
+        }
 
         // dd($keyword);
             // $message = $dictionaryLookup;
-        return response()->json($keyword);
+        return response()->json($message);
     }
 }
