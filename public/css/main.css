@@ -5,10 +5,10 @@ body {
     background-attachment: fixed;
     background-position: right bottom;
 }
-.center-search {
-  margin: auto;
+.center-search { 
+  margin: auto; 
   width: 100%;
-  padding-top: 12%;
+  padding-top: 20%;
 }
 .nav li {
   display: inline-block;

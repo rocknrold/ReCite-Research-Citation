@@ -65,5 +65,20 @@ class CrwCoreController extends Controller
         // dd($keyword);
             // $message = $dictionaryLookup;
         return response()->json($message);
+        // return response()->json($keyword);
+    }
+
+    public function nextPage(Request $request)
+    {
+        $response = Crw_core::corePaginationSearch($request->query('query'), intval($request->query('currentPage')));
+        // dd($response);
+        return $response;
+    }
+
+    public function backPage(Request $request)
+    {
+        $response = Crw_core::corePaginationSearch($request->query('query'), intval($request->query('currentPage')));
+        // dd($response);
+        return $response;
     }
 }

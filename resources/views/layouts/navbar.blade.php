@@ -1,4 +1,4 @@
-<nav style="background-color:transparent">
+<nav style="background-color:white;position:fixed;top:0;overflow:auto;">
     <div class="nav-wrapper">      
         <ul class="left align-text-top">
             <li><a class="waves-effect waves-teal btn-flat" href="/">

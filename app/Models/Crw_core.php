@@ -26,6 +26,24 @@ class Crw_core extends Model
         }
     }
 
+    public static function corePaginationSearch($keyword, $page)
+    {
+        $access_key = config('services.secrets.core');
+
+        $query = "title:(".$keyword.")";
+
+        // dd([$query, gettype($query), $page, gettype($page)]);
+    
+        $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
+                ["query" => $query,
+                "page" => $page,
+                "pageSize" => 10,
+                "scrollId" => "",]
+            ]);
+
+        return $response->json();
+    }
+
     public function coresearch()
     {
         return $this->belongsToMany(Crw_search::class);
