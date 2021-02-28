@@ -65,6 +65,7 @@ Route::get('/search?', [CrwSearchController::class, 'index'])->name('core.index'
 Route::get('/search', [CrwSearchController::class, 'search'])->name('core.search');
 
 Route::post('/search/library', [CrwCoreController::class, 'searchCoreLibrary'])->name('search.library');
+Route::post('/search/library-year', [CrwCoreController::class, 'filterYearSearch'])->name('search.libraryForYear');
 Route::get('/search/{word}/{id}', [CrwCoreController::class, 'nextPage'])->name('seachLibrary.next');
 Route::get('/search/{word}/{id}', [CrwCoreController::class, 'backPage'])->name('seachLibrary.back');
 
