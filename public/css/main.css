@@ -17,8 +17,12 @@ body {
 }
 .container {
     margin: auto;
-    width:50%;
+    width:60%;
 }
 .section:hover {
     background-color: #f5f5f5 ;
   }
+
+.material-tooltip .backdrop{
+  background-color: #DB0000;
+}

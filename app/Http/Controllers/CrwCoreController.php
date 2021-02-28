@@ -26,7 +26,7 @@ class CrwCoreController extends Controller
         $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
                 ["query" => $query,
                 "page" => 1,
-                "pageSize" => 10,
+                "pageSize" => 20,
                 "scrollId" => "",]
             ]);
     
@@ -62,23 +62,33 @@ class CrwCoreController extends Controller
                 $message = $msg;
         }
 
-        // dd($keyword);
-            // $message = $dictionaryLookup;
         return response()->json($message);
-        // return response()->json($keyword);
     }
 
     public function nextPage(Request $request)
     {
-        $response = Crw_core::corePaginationSearch($request->query('query'), intval($request->query('currentPage')));
-        // dd($response);
+        if($request->has('yearFrom') && $request->query('yearFrom') != ""){
+            $response = Crw_core::coreFilterYearSearch($request->query('query'),$request->query('yearFrom'),$request->query('yearTo'),intval($request->query('currentPage')));
+        } else {
+            $response = Crw_core::corePaginationSearch($request->query('query'), intval($request->query('currentPage')));
+        }
         return $response;
     }
 
     public function backPage(Request $request)
     {
-        $response = Crw_core::corePaginationSearch($request->query('query'), intval($request->query('currentPage')));
-        // dd($response);
+        if($request->has('yearFrom') && $request->query('yearFrom') != ""){
+            $response = Crw_core::coreFilterYearSearch($request->query('query'),$request->query('yearFrom'),$request->query('yearTo'),intval($request->query('currentPage')));
+        } else {
+            $response = Crw_core::corePaginationSearch($request->query('query'), intval($request->query('currentPage')));
+        }
+        return $response;
+    }
+
+    public function filterYearSearch(Request $request)
+    {
+        // dd([$request, $request->post('query'),$request->post('yearFrom'),$request->post('yearTo'),$request->post('currentPage')]);
+        $response = Crw_core::coreFilterYearSearch($request->post('query'),intval($request->post('yearFrom')),intval($request->post('yearTo')),intval($request->post('currentPage')));
         return $response;
     }
 }
