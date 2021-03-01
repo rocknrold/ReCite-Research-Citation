@@ -5,8 +5,8 @@ $(function(){
     var currentPageIdentifier = $('#currentPage').text();
     var titleChecked = $("#titleRequired").checked;
     var documentChecked = $('#documentRequired').checked;
-    var yearFrom  = $('input[id="yearFrom"]').val();
-    var yearTo = $('input[id="yearTo"]').val();
+    // var yearFrom  = $('input[id="yearFrom"]').val();
+    // var yearTo = $('input[id="yearTo"]').val();
 
     console.log(titleChecked,documentChecked);
      
@@ -99,6 +99,9 @@ $(function(){
 
     $('#searchFilter').on('click',function(e){
         e.preventDefault();
+        var yearTo = $('input[id="yearTo"]').val();
+        var yearFrom = $('input[id="yearFrom"]').val();
+
         if(yearFrom != "" & yearTo != ""){
             filterByYear(yearFrom,yearTo);
             $('#filters').html("<div class=\"chip\">"+yearFrom +" - "+ yearTo+"</div>");
@@ -286,7 +289,7 @@ $(function(){
 
     function filterByYear(yearFrom,yearTo)
     {
-        var result = '';
+
         if($('#keyword').text() != ""){ 
             $.ajax({
                     type: 'POST',
@@ -309,6 +312,5 @@ $(function(){
                     }
             });
         };
-        return result;
     }
 });
