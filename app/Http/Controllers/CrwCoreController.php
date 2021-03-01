@@ -41,13 +41,15 @@ class CrwCoreController extends Controller
             if($validateWord)
             {
                 $searchesId = Crw_search::saveSearch($keyword);
-    
-                if(array_key_exists('definition', $dictionaryLookup))
+                
+                $words = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0];
+
+                if(array_key_exists('definitions', $words))
                 {
                     $wordDescription = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions'][0];    
                 }else { $wordDescription = $keyword;}
     
-                if(array_key_exists('synonyms', $dictionaryLookup))
+                if(array_key_exists('synonyms', $words))
                 {
                     $wordSynonym = $dictionaryLookup['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['synonyms'][0]['text'];
                 }else { $wordSynonym = $keyword;}
