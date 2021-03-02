@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CrwSearchController;
 use App\Http\Controllers\CrwCoreController;
 use App\Http\Controllers\CrwWordController;
+use App\Http\Controllers\CrwCoresSearchController;
 use App\Models\Crw_search;
 
 /*
@@ -69,6 +70,8 @@ Route::post('/search/library', [CrwCoreController::class, 'searchCoreLibrary'])-
 Route::post('/search/library-year', [CrwCoreController::class, 'filterYearSearch'])->name('search.libraryForYear');
 Route::get('/search/{word}/{id}', [CrwCoreController::class, 'nextPage'])->name('searchLibrary.next');
 Route::get('/search/{word}/{id}', [CrwCoreController::class, 'backPage'])->name('searchLibrary.back');
+Route::get('/add/library',[CrwCoresSearchController::class, 'addToLibrary'])->name('add.libary');
+
 
 Route::get('/word/list',[CrwWordController::class, 'showAll'])->name('words.list');
 

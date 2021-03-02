@@ -33,14 +33,14 @@ class Crw_search extends Model
         $result = Crw_search::where('search_keyword', $keyword)->first();
         
         if ($result) {
-           Crw_search::where('search_id', $result->search_id)->update(['search_frequency' => $result->search_frequency + 1]);
-           $getCreateId = $result->search_id; 
+            Crw_search::where('search_id', $result->search_id )->update(['search_frequency' => $result->search_frequency + 1]);
+            $getCreateId = $result->search_id;          
         } else {
             $newWord = Crw_search::create([
                 'search_keyword' => $keyword,
                 'search_frequency' => 1,
             ]);
-            $getCreateId = $newWord->search_id; 
+            $getCreateId = $newWord->id; 
         }
 
         return $getCreateId;
