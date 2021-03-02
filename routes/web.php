@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CrwSearchController;
 use App\Http\Controllers\CrwCoreController;
+use App\Http\Controllers\CrwWordController;
 use App\Models\Crw_search;
 
 /*
@@ -66,8 +67,10 @@ Route::get('/search', [CrwSearchController::class, 'search'])->name('core.search
 
 Route::post('/search/library', [CrwCoreController::class, 'searchCoreLibrary'])->name('search.library');
 Route::post('/search/library-year', [CrwCoreController::class, 'filterYearSearch'])->name('search.libraryForYear');
-Route::get('/search/{word}/{id}', [CrwCoreController::class, 'nextPage'])->name('seachLibrary.next');
-Route::get('/search/{word}/{id}', [CrwCoreController::class, 'backPage'])->name('seachLibrary.back');
+Route::get('/search/{word}/{id}', [CrwCoreController::class, 'nextPage'])->name('searchLibrary.next');
+Route::get('/search/{word}/{id}', [CrwCoreController::class, 'backPage'])->name('searchLibrary.back');
+
+Route::get('/word/list',[CrwWordController::class, 'showAll'])->name('words.list');
 
 // Route::get('/search/{word}/{id}', function($word, $id){
 //     return $word . ' ' . $id . '';
