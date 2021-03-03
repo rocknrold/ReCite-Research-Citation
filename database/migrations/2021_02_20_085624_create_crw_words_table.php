@@ -14,7 +14,9 @@ class CreateCrwWordsTable extends Migration
     public function up()
     {
         Schema::create('crw_words', function (Blueprint $table) {
-            $table->unsignedBigInteger('crw_searchID')->foreignId('search_id')->constrained();
+            // $table->unsignedBigInteger('crw_search_id')->foreignId('search_id')->constrained();
+            $table->unsignedBigInteger('crw_search_id')->nullable();
+            $table->foreign('crw_search_id')->references('search_id')->on('crw_searches')->onDelete('cascade')->onUpdate('cascade');
             $table->string('crw_description');
             $table->string('crw_synonym');
             $table->timestamps();

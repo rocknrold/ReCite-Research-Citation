@@ -14,20 +14,50 @@ class CrwCoresSearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function groupsIndex()
+    {   
+        $populars = Crw_search::popularSearches();
+        $results = Crw_search::with(['coresearch'])
+                            ->whereIn('search_keyword', $populars)
+                            ->get();
+               
+        foreach($results as $search)
+        { 
+            $ids = []; 
+            foreach($search->coresearch as $coreid)
+            {
+                $ids[] = $coreid->crw_coresID;
+            }
+            
+            $cores = Crw_core::whereIn('core_id',$ids)->orderBy('likes', 'DESC')->get();
+            $items[$search->search_keyword] = $cores;
+        }
+
+        return view('group.index')->with('items',$items);
+
+    }
+
     public function addToLibrary(Request $request)
     {
-        $search = Crw_search::where('search_keyword', $request->get('query') )->first();
-        $searchId = $search->search_id;
-
-        // dd([$search,$searchId]);
+        $search = Crw_search::where('search_keyword', $request->query('search'))->first();
+        if($search)
+        {
+          $searchId = $search->search_id;
+        }
 
         $coreId = Crw_core::addToCore(request()->title,request()->year,request()->oai,request()->url,request()->description);
         
         $coreSearch = Crw_cores_search::firstOrCreate(['crw_coresID'=>$coreId,'crw_searchesID'=>$searchId]);
 
-        dd([$search,$searchId,$coreId,$coreSearch]);
-
-        // dd([$request->query('title'),$request->get('title'),request()->title, $request->all(),$request->query('url'),$request->get('description')]);
+        return redirect('/groups');
     }
 
+    public function corelikes(Request $request)
+    {
+        if($request->ajax())
+        {
+            $core = Crw_core::corelikesupdate(key($request->all()),$request->get(key($request->all())));
+        }
+        return $core;
+    }
 }

@@ -13,12 +13,12 @@ class Crw_cores_search extends Model
 
     public function search()
     {
-        return $this->hasMany(Crw_search::class);
+        return $this->belongsTo(Crw_search::class, 'crw_searchesID' ,'search_id');
     }
 
     public function core()
     {
-        return $this->hasMany(Crw_core::class);
+        return $this->belongsTo(Crw_core::class, 'crw_coresID', 'core_id');
     }
 
 }

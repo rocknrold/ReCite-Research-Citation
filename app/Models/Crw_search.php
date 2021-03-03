@@ -76,11 +76,11 @@ class Crw_search extends Model
 
     public function word()
     {
-        return $this->hasOne(Crw_word::class);
+        return $this->hasOne(Crw_word::class, 'crw_search_id', 'search_id');
     }
 
     public function coresearch()
     {
-        return $this->belongsToMany(Crw_core::class);
+        return $this->hasMany(Crw_cores_search::class, 'crw_searchesID', 'search_id');
     }
 }
