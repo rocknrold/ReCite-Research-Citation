@@ -11,7 +11,6 @@ class Crw_core extends Model
     use HasFactory;
     protected $fillable = ['core_title', 
                             'core_yearPublished', 
-                            'core_fullTextIdentifier', 
                             'core_description', 
                             'core_oai', 
                             'core_downloadUrl'
@@ -65,6 +64,26 @@ class Crw_core extends Model
             ]);
 
         return $response->json();
+    }
+
+    public static function addToCore($title,$year,$oai,$url,$description)
+    {
+        $result = Crw_core::where('core_oai', $oai)->first();
+
+        if ($result) {
+            $getCreateId = $result->core_id;          
+        } else {
+            $newWord = Crw_core::create([
+                'core_title' => $title,
+                'core_yearPublished' => $year ,
+                'core_description' => $description,
+                'core_oai' => $oai,
+                'core_downloadUrl' => $url,
+            ]);
+            $getCreateId = $newWord->id; 
+        }
+
+        return $getCreateId;       
     }
 
 

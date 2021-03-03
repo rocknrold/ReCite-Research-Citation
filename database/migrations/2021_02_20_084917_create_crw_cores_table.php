@@ -17,8 +17,7 @@ class CreateCrwCoresTable extends Migration
             $table->id('core_id');
             $table->string('core_title');
             $table->year('core_yearPublished');
-            $table->string('core_fullTextIdentifier');
-            $table->string('core_description');
+            $table->longText('core_description');
             $table->string('core_oai');
             $table->string('core_downloadUrl');
             $table->timestamps();
