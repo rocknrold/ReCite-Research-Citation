@@ -16,10 +16,12 @@ class CreateCrwCoresTable extends Migration
         Schema::create('crw_cores', function (Blueprint $table) {
             $table->id('core_id');
             $table->string('core_title');
-            $table->year('core_yearPublished');
-            $table->longText('core_description');
-            $table->string('core_oai');
-            $table->string('core_downloadUrl');
+            $table->year('core_yearPublished')->nullable();
+            $table->longText('core_description')->nullable();
+            $table->string('core_oai')->nullable();
+            $table->string('core_downloadUrl')->nullable();
+            $table->integer('likes');
+            $table->integer('dislikes');
             $table->timestamps();
         });
     }

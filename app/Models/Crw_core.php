@@ -13,7 +13,9 @@ class Crw_core extends Model
                             'core_yearPublished', 
                             'core_description', 
                             'core_oai', 
-                            'core_downloadUrl'
+                            'core_downloadUrl',
+                            'likes',
+                            'dislikes',
                             ];
 
     public static function validateLibraryResponse($lookup)
@@ -79,6 +81,8 @@ class Crw_core extends Model
                 'core_description' => $description,
                 'core_oai' => $oai,
                 'core_downloadUrl' => $url,
+                'likes'=> 0,
+                'dislikes'=> 0,
             ]);
             $getCreateId = $newWord->id; 
         }
@@ -86,9 +90,24 @@ class Crw_core extends Model
         return $getCreateId;       
     }
 
+    public static function corelikesupdate($coreLikeDislike,$coreid)
+    {
+        $response = Crw_core::where('core_id',$coreid)->first();
+        
+        if($coreLikeDislike === "dislikes")
+        {
+            $response = Crw_core::where('core_id', $coreid)->update(['dislikes' => $response->dislikes + 1]);
+        } else 
+        {
+            $response = Crw_core::where('core_id', $coreid)->update(['likes' => $response->likes + 1]);
+        }
+
+        return response()->json($response);
+    }
+
 
     public function coresearch()
     {
-        return $this->belongsToMany(Crw_search::class);
+        return $this->hasMany(Crw_cores_search::class, 'crw_coresID', 'core_id');
     }
 }

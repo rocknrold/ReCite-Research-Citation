@@ -14,8 +14,10 @@ class CrwCoresSearchesTable extends Migration
     public function up()
     {
         Schema::create('crw_cores_searches', function(Blueprint $table){
-            $table->unsignedBigInteger('crw_coresID')->foreignId('core_id')->constrained();
-            $table->unsignedBigInteger('crw_searchesID')->foreignId('search_id')->constrained();
+            $table->unsignedBigInteger('crw_coresID')->nullable();
+            $table->foreign('crw_coresID')->references('core_id')->on('crw_cores')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('crw_searchesID')->nullable();
+            $table->foreign('crw_searchesID')->references('search_id')->on('crw_searches')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -25,42 +25,42 @@ Route::get('/', function () {
     return view('layouts.home', ['popular' => $popular]);
 });
 
-Route::get('/core/{keyword}', function(Request $request, $keyword){
+// Route::get('/core/{keyword}', function(Request $request, $keyword){
    
-    $access_key = config('services.secrets.core');
+//     $access_key = config('services.secrets.core');
 
-    $query = "title:($keyword)";
+//     $query = "title:($keyword)";
 
-    $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
-            ["query" => $query,
-            "page" => 1,
-            "pageSize" => 10,
-            "scrollId" => "",]
-        ]);
+//     $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
+//             ["query" => $query,
+//             "page" => 1,
+//             "pageSize" => 10,
+//             "scrollId" => "",]
+//         ]);
 
-    dd($response->json());
+//     dd($response->json());
 
-    return $response->json();
+//     return $response->json();
 
-})->name('core.api');
+// })->name('core.api');
 
 
-Route::get('/word', function(){
+// Route::get('/word', function(){
    
-    $access_key = config('services.secrets.word');
-    $app_id = config('services.secrets.wordapp');
+//     $access_key = config('services.secrets.word');
+//     $app_id = config('services.secrets.wordapp');
     
-    $response = Http::withHeaders([
-            "Accept" => "application/json",
-            "app_id" => $app_id,
-            "app_key"=> $access_key
-    ])->get('https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?strictMatch=false');
+//     $response = Http::withHeaders([
+//             "Accept" => "application/json",
+//             "app_id" => $app_id,
+//             "app_key"=> $access_key
+//     ])->get('https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?strictMatch=false');
 
-    dd($response->json());
+//     dd($response->json());
 
-    return $response->json();
+//     return $response->json();
 
-})->name('word.api');
+// })->name('word.api');
 
 
 Route::get('/search?', [CrwSearchController::class, 'index'])->name('core.index');
@@ -74,6 +74,11 @@ Route::get('/add/library',[CrwCoresSearchController::class, 'addToLibrary'])->na
 
 
 Route::get('/word/list',[CrwWordController::class, 'showAll'])->name('words.list');
+
+Route::get('/groups',[CrwCoresSearchController::class, 'groupsIndex'])->name('crw.index');
+
+Route::get('/core/like',[CrwCoresSearchController::class, 'corelikes'])->name('crw.likes');
+
 
 // Route::get('/search/{word}/{id}', function($word, $id){
 //     return $word . ' ' . $id . '';

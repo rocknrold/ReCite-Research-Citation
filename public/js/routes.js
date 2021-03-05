@@ -280,17 +280,13 @@ $(function(){
         '<div class="col s12"><h6><strong>Author : '+ authors +'</strong></h6></div>'+
         '<div class="col s6"><p>Year Published : '+ year +'</p>'+
         '<i> oai : '+ oai +'</i></div>'+
-        '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="/add/library?title='+title+'&year='+year+'&'+
-        'oai='+oai+'&url='+url+'&description='+description+'&query='+globalSearchKeyword+'">'+
+        '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="/add/library?search='+globalSearchKeyword+'&title='+title+'&year='+year+'&'+
+        'oai='+oai+'&url='+url+'&description='+description+'">'+
         '<i class="material-icons">add</i></a><br><small>Add to Library</small></div>'+
             '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="'+ url +'">'+
             '<i class="material-icons">article</i></a><br><small>View Document</small></div>'+            
             '</div><blockquote>'+ description +'</blockquote></div>');  
     }
-
-    $('a').on('click',function(){
-        al('im clicked');
-    });
 
     function filterByYear(yearFrom,yearTo)
     {
