@@ -12,7 +12,7 @@ class Crw_core extends Model
     protected $fillable = ['core_title', 
                             'core_yearPublished', 
                             'core_description', 
-                            'core_oai', 
+                            'core_doi', 
                             'core_downloadUrl',
                             'likes',
                             'dislikes',
@@ -42,7 +42,7 @@ class Crw_core extends Model
         $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
                 ["query" => $query,
                 "page" => $page,
-                "pageSize" => 20,
+                "pageSize" => 100,
                 "scrollId" => "",]
             ]);
 
@@ -61,16 +61,16 @@ class Crw_core extends Model
         $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
                 ["query" => $query,
                 "page" => $page,
-                "pageSize" => 20,
+                "pageSize" => 100,
                 "scrollId" => "",]
             ]);
 
         return $response->json();
     }
 
-    public static function addToCore($title,$year,$oai,$url,$description)
+    public static function addToCore($title,$year,$doi,$url,$description)
     {
-        $result = Crw_core::where('core_oai', $oai)->first();
+        $result = Crw_core::where('core_doi', $doi)->first();
 
         if ($result) {
             $getCreateId = $result->core_id;          
@@ -79,7 +79,7 @@ class Crw_core extends Model
                 'core_title' => $title,
                 'core_yearPublished' => $year ,
                 'core_description' => $description,
-                'core_oai' => $oai,
+                'core_doi' => $doi,
                 'core_downloadUrl' => $url,
                 'likes'=> 0,
                 'dislikes'=> 0,

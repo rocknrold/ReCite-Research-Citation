@@ -18,7 +18,7 @@ class CreateCrwCoresTable extends Migration
             $table->string('core_title');
             $table->year('core_yearPublished')->nullable();
             $table->longText('core_description')->nullable();
-            $table->string('core_oai')->nullable();
+            $table->string('core_doi')->nullable();
             $table->string('core_downloadUrl')->nullable();
             $table->integer('likes');
             $table->integer('dislikes');

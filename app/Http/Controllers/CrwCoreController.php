@@ -26,7 +26,7 @@ class CrwCoreController extends Controller
         $response = Http::post('https://core.ac.uk:443/api-v2/search?apiKey='. $access_key .'',[
                 ["query" => $query,
                 "page" => 1,
-                "pageSize" => 20,
+                "pageSize" => 100,
                 "scrollId" => "",]
             ]);
     
@@ -55,6 +55,9 @@ class CrwCoreController extends Controller
                 }else { $wordSynonym = $keyword;}
     
                 Crw_word::createWordDefinition($searchesId, $wordDescription, $wordSynonym);
+            } else {
+                $searchesId = Crw_search::saveSearch($keyword);
+                Crw_word::createWordDefinition($searchesId, "Not Available", "Not Available");
             }
 
             $message = $response->json();

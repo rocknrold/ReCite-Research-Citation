@@ -192,11 +192,11 @@ $(function(){
                 authors += value + ',';
             });
             
-            if(titles.includes(title.toLowerCase()) === false){
+            if(titles.includes(title.toLowerCase()) === false && value['_source']['doi'] != null){
                 titles.push(title.toLowerCase());
                 layoutResults(authors,title,
                             value['_source']['year'],
-                            value['_source']['oai'],
+                            value['_source']['doi'],
                             value['_source']['urls'][0],
                             value['_source']['description']);
             }
@@ -216,11 +216,11 @@ $(function(){
                 authors += value + ',';
             });
             
-            if(documentURL != null){
+            if(documentURL != null && value['_source']['doi'] != null){
                 layoutResults(authors,
                             value['_source']['title'],
                             value['_source']['year'],
-                            value['_source']['oai'],
+                            value['_source']['doi'],
                             documentURL,
                             value['_source']['description']);
             }
@@ -237,13 +237,14 @@ $(function(){
             $.each(value['_source']['authors'], function(key, value){
                 authors += value + ',';
             });
-            
+            if (value['_source']['doi'] != null) {
                 layoutResults(authors,
                             value['_source']['title'],
                             value['_source']['year'],
-                            value['_source']['oai'],
+                            value['_source']['doi'],
                             value['_source']['urls'][0],
                             value['_source']['description']);
+            }
         });
     }
 
@@ -261,11 +262,11 @@ $(function(){
                 authors += value + ',';
             });
             
-            if(titles.includes(title.toLowerCase()) === false && documentURL != null){
+            if(titles.includes(title.toLowerCase()) === false && documentURL != null && value['_source']['doi'] != null){
                 titles.push(title.toLowerCase());
                 layoutResults(authors,title,
                             value['_source']['year'],
-                            value['_source']['oai'],
+                            value['_source']['doi'],
                             documentURL,
                             value['_source']['description']);
             }
@@ -273,15 +274,15 @@ $(function(){
         console.log(titles);
     }
 
-    function layoutResults(authors,title,year,oai,url,description)
+    function layoutResults(authors,title,year,doi,url,description)
     {
         $('#result-list').append('<div class="divider"></div><div class="section"><div class="row">'+
         '<div class="col s12"><h6><strong>Title : '+ title +'</strong></h6></div>'+
         '<div class="col s12"><h6><strong>Author : '+ authors +'</strong></h6></div>'+
         '<div class="col s6"><p>Year Published : '+ year +'</p>'+
-        '<i> oai : '+ oai +'</i></div>'+
+        '<i> doi : '+ doi +'</i></div>'+
         '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="/add/library?search='+globalSearchKeyword+'&title='+title+'&year='+year+'&'+
-        'oai='+oai+'&url='+url+'&description='+description+'">'+
+        'doi='+doi+'&url='+url+'&description='+description+'">'+
         '<i class="material-icons">add</i></a><br><small>Add to Library</small></div>'+
             '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="'+ url +'">'+
             '<i class="material-icons">article</i></a><br><small>View Document</small></div>'+            

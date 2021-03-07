@@ -45,7 +45,7 @@ class CrwCoresSearchController extends Controller
           $searchId = $search->search_id;
         }
 
-        $coreId = Crw_core::addToCore(request()->title,request()->year,request()->oai,request()->url,request()->description);
+        $coreId = Crw_core::addToCore(request()->title,request()->year,request()->doi,request()->url,request()->description);
         
         $coreSearch = Crw_cores_search::firstOrCreate(['crw_coresID'=>$coreId,'crw_searchesID'=>$searchId]);
 

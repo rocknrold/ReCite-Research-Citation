@@ -63,7 +63,7 @@ Route::get('/', function () {
 // })->name('word.api');
 
 
-Route::get('/search?', [CrwSearchController::class, 'index'])->name('core.index');
+Route::get('/search/index', [CrwSearchController::class, 'index'])->name('core.index');
 Route::get('/search', [CrwSearchController::class, 'search'])->name('core.search');
 
 Route::post('/search/library', [CrwCoreController::class, 'searchCoreLibrary'])->name('search.library');
