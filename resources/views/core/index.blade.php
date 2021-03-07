@@ -1,21 +1,8 @@
 @extends('welcome')
-@section('content')
-
-<div class="center-search">
-    @include('layouts.search')
-</div>
-<div>
-@foreach($query as $k)
-<p>Seeing results for <b id="keyword">{{ $k }}</b> : <i id="totalResults"></i> references</p>
-@endforeach
-
-<div class="divider"></div>
-<div class="row">
-    <div class="col s3">
-    <!-- Grey navigation panel -->
+@section('sidebar')
+<div style="margin:auto;padding:5%;padding-top:10%;position:fixed;">
         <ul>
         <li>Filter By<div id="filters"></div><div id="filterstitle"></div><div id="filtersurl"></div><h6 class="divider"></h6></li>
-        {{-- <li id="filters"></li> --}}
         <li>Year</li>
         <li>
             <small style="color:red">Custom Range</small>
@@ -47,7 +34,19 @@
         </li>
         </ul>
     </div>
-    <div class="col s9">
+@endsection
+@section('content')
+<div class="center-search">
+    @include('layouts.search')
+</div>
+<div>
+@foreach($query as $k)
+<p>Seeing results for <b id="keyword">{{ $k }}</b> : <i id="totalResults"></i> references</p>
+@endforeach
+
+<div class="divider"></div>
+<div class="row">
+    <div class="col s12">
         <!-- Teal page content  -->
 <div id="result-list"> 
 {{-- @for($i = 0; $i < 10; $i++)

@@ -21,6 +21,7 @@
 </head>
 <body onload="$('.tap-target').tapTarget('open')">
   @include('layouts.navbar')
+  @yield('sidebar')
   <div class="container">
     @yield('content')
   </div>
