@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Crw_cores_search;
 use App\Models\Crw_core;
+use App\Models\Crw_core_citation;
 use App\Models\Crw_search;
 use Illuminate\Http\Request;
 
@@ -29,10 +30,10 @@ class CrwCoresSearchController extends Controller
                 $ids[] = $coreid->crw_coresID;
             }
             
-            $cores = Crw_core::whereIn('core_id',$ids)->orderBy('likes', 'DESC')->get();
+            $cores = Crw_core::with(['corecitation'])->whereIn('core_id',$ids)->orderBy('likes', 'DESC')->get();
             $items[$search->search_keyword] = $cores;
         }
-
+        // dd($items);
         return view('group.index')->with('items',$items);
 
     }
@@ -46,6 +47,8 @@ class CrwCoresSearchController extends Controller
         }
 
         $coreId = Crw_core::addToCore(request()->title,request()->year,request()->doi,request()->url,request()->description);
+
+        Crw_core_citation::addToCoreCitation($coreId,request()->doi);
         
         $coreSearch = Crw_cores_search::firstOrCreate(['crw_coresID'=>$coreId,'crw_searchesID'=>$searchId]);
 

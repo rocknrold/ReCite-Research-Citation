@@ -29,7 +29,7 @@ class CrwSearchController extends Controller
     // }
     public function index()
     {
-        return view('core.index')->with('query', $request->query);
+        return view('core.index');
     }
 
     public function search(Request $request)
