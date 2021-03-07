@@ -7,6 +7,7 @@ use App\Http\Controllers\CrwCoreController;
 use App\Http\Controllers\CrwWordController;
 use App\Http\Controllers\CrwCoresSearchController;
 use App\Models\Crw_search;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,14 @@ Route::get('/', function () {
 //     return $response->json();
 
 // })->name('word.api');
+
+// Route::get('/opencitation', function(){
+    
+//     $response = Http::get('https://opencitations.net/index/coci/api/v1/metadata/10.1007/978-1-4471-2359-0_15');
+
+//     dd($response->json());
+//     // return $response->json();
+// })->name('open.cite');
 
 
 Route::get('/search?', [CrwSearchController::class, 'index'])->name('core.index');

@@ -27,10 +27,10 @@ class CrwWordController extends Controller
                 // $populars[] = $pw
             }
         }
-
-        // $results = Crw_search::dictionaryLookup($popularWords[0]);
-        // dd($results);
-        // return view('word.index');
+        if(empty($results))
+        {
+            $results['error'] = 'no searches yet';
+        }
         return view('word.index')->with('words',$results);
     }
 }
