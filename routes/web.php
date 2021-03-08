@@ -86,6 +86,7 @@ Route::get('/groups',[CrwCoresSearchController::class, 'groupsIndex'])->name('cr
 Route::get('/core/like',[CrwCoresSearchController::class, 'corelikes'])->name('crw.likes');
 
 Route::get('/citations',[CrwCoreCitationController::class,'citationIndex'])->name('core.citation');
+Route::get('/citation/list',[CrwCoreCitationController::class,'citationList'])->name('crw.citation');
 
 Route::get('/word/list',[CrwWordController::class, 'showAll'])->name('words.list');
 

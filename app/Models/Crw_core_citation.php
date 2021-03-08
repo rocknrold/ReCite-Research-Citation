@@ -33,6 +33,23 @@ class Crw_core_citation extends Model
         ]);
     }
 
+    public static function getCoreCitations()
+    {
+        $core_citations = Crw_core_citation::with(['core'])->get();
+
+        foreach($core_citations as $cores)
+        {
+            $dois[] = $cores->core->core_doi;
+        }
+        
+        $doiString = join('__', $dois);
+
+        $response = Crw_core_citation::opencitations($doiString);
+
+        // dd($response);
+        return $response;
+    }
+
     public function core()
     {
         return $this->belongsTo(Crw_core::class, 'crw_coresID', 'core_id');
