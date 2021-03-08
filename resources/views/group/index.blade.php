@@ -1,4 +1,6 @@
 @extends('welcome')
+@section('sidebar')
+@endsection
 @section('content')
 @if(isset($items['error']))
     <div class="row"style="margin: auto;width: 100%;padding:10%;">

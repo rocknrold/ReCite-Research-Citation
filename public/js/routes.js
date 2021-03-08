@@ -283,9 +283,9 @@ $(function(){
         '<i> doi : '+ doi +'</i></div>'+
         '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="/add/library?search='+globalSearchKeyword+'&title='+title+'&year='+year+'&'+
         'doi='+doi+'&url='+url+'&description='+description+'">'+
-        '<i class="material-icons">add</i></a><br><small>Add to Library</small></div>'+
+        '<i class="material-icons">add</i></a><br><small>Add to Groups</small></div>'+
             '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="'+ url +'">'+
-            '<i class="material-icons">article</i></a><br><small>View Document</small></div>'+            
+            '<i class="material-icons">article</i></a><br><small>View Reference</small></div>'+            
             '</div><blockquote>'+ description +'</blockquote></div>');  
     }
 
