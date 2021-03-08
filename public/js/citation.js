@@ -1,17 +1,18 @@
 $(function(){
     $('body').css({'background-image':'none'});
 
-    var titles = [];
-
+    var titles = {};
+    
     $.ajax({
-        type:'GET',
-        url: '/citation/list',
-        dataType: 'json',
-        success:function(data){
-            $.each(data, function(key, value){
+      type:'GET',
+      url: '/citation/list',
+      dataType: 'json',
+      success:function(data){
+        
+        $.each(data, function(key, value){
 
-                titles.push({key:key, value: value['title'] });
-                console.log(titles);
+                titles[value['title']] = value['doi'];
+
                 var pattern = /^[A-Za-z]+,?\s.?[A-Z]/g;
                 var authors = value['author'].split(';');
                 var authorMatches = [];
@@ -39,17 +40,18 @@ $(function(){
                 '<a class="secondary-content copy" style="padding:1px;"  data-id="citation_'+key+'"><i class="material-icons">content_copy</i></a>'+
                 '<span class="black-text cite" id="citation_'+key+'">'+ citation +'</span></div></div>');
             });
+
+            $('#autocomplete-input').autocomplete({
+              data: titles,
+              limit: 20, 
+              onAutocomplete: function(val) {
+                console.log(val);
+              },
+              minLength: 2,
+            });
         }
     });
-
-    $('#autocomplete-input').autocomplete({
-      data: {titles},
-      limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-      onAutocomplete: function(val) {
-        console.log(val);
-      },
-      minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-    });
+  
 
      
     $('.row').on('click', '.copy', function(e){

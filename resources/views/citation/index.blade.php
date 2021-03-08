@@ -9,7 +9,7 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">search</i>
-          <input type="text" id="autocomplete-input" class="autocomplete">
+          <input type="text" id="autocomplete-input">
           <label for="autocomplete-input">Search for an entity by title </label>
         </div>
       </div>
