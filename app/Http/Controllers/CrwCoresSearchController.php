@@ -33,7 +33,10 @@ class CrwCoresSearchController extends Controller
             $cores = Crw_core::with(['corecitation'])->whereIn('core_id',$ids)->orderBy('likes', 'DESC')->get();
             $items[$search->search_keyword] = $cores;
         }
-        // dd($items);
+        if(empty($items))
+        {
+            $items['error'] = "no groups yet";
+        }
         return view('group.index')->with('items',$items);
 
     }

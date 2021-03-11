@@ -5,20 +5,11 @@
 <h6>Popular searches</h6>
 @if(isset($words['error']))
     <div class="row">
-        {{-- <div class="col s12 m4 l8"><h3>{{$words['error']}}</h3></div> --}}
-              <div class="col s4">
-        <!-- Promo Content 1 goes here -->
-      </div>
-      <div class="col s4">
-        <!-- Promo Content 2 goes here -->
+    <div class="col s12">
         <i class="large material-icons">error_outline</i>
-        <h4>{{$words['error']}}</h4>
-      </div>
-      <div class="col s4">
-        <!-- Promo Content 3 goes here -->
-      </div>
+        <span class="flow-text"><h5>{{$words['error']}}</h5></span>
     </div>
-    
+    </div>
 @else
 
 <div class="divider"></div>
