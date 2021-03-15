@@ -16,4 +16,13 @@ class CrwCoreCitationController extends Controller
     {
         return view('citation.index');
     }
+
+    public function citationList(Request $request)
+    {
+        if($request->ajax())
+        {
+            $response = Crw_core_citation::getCoreCitations();
+        }
+        return response()->json($response);
+    }
 }

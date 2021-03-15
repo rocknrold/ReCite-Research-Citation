@@ -26,11 +26,35 @@ class Crw_core_citation extends Model
     {
 
         $response = Crw_core_citation::opencitations($core_doi);
-        // dd([$response, $response[0]['citation_count']]);
-        Crw_core_citation::firstOrCreate([
-            'crw_coresID' => $core_id,
-            'crw_citation_count' => $response[0]['citation_count']
-        ]);
+
+        if($response){    
+            Crw_core_citation::firstOrCreate([
+                'crw_coresID' => $core_id,
+                'crw_citation_count' => $response[0]['citation_count']
+                ]);
+        } else {
+            Crw_core_citation::firstOrCreate([
+                'crw_coresID' => $core_id,
+                'crw_citation_count' => 0
+                ]);
+        }
+    }
+
+    public static function getCoreCitations()
+    {
+        $core_citations = Crw_core_citation::with(['core'])->get();
+
+        foreach($core_citations as $cores)
+        {
+            $dois[] = $cores->core->core_doi;
+        }
+        
+        $doiString = join('__', $dois);
+
+        $response = Crw_core_citation::opencitations($doiString);
+
+        // dd($response);
+        return $response;
     }
 
     public function core()
