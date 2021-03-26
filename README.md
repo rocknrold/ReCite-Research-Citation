@@ -1,4 +1,7 @@
-laravel core research word
+laravel backed
+This application is:
+formely known as -> core research word
+now -> ReCite (Research Citation)
 
 this web application uses the CORE API and the Oxford Dictionary 
 
