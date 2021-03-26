@@ -1,9 +1,10 @@
 <nav style="background-color:white;position:fixed;top:0;overflow:auto;z-index: +1;">
     <div class="nav-wrapper">      
         <ul class="left align-text-top">
-            <li><a class="waves-effect waves-teal btn-flat" href="/">
-                <img src="{{ asset('images/crw-logo.png')}}" class="box responsive-img" width=4%; height=auto;>
-                Core Research Word</a>
+            <li class="navCustom" style="display:inline-block;width:10;">
+            <a href="/" style="color:black">
+            <img src="{{ asset('images/crw-logo.png')}}" width="7%">
+            Core Research Word</a>
             </li>
         </ul>
         <ul class="right hide-on-med-and-down">

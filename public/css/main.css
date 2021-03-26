@@ -26,3 +26,8 @@ body {
 .material-tooltip .backdrop{
   background-color: #DB0000;
 }
+
+
+.navCustom:hover {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
