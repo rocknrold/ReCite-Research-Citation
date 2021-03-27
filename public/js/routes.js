@@ -281,10 +281,10 @@ $(function(){
         '<div class="col s12"><h6><strong>Author : '+ authors +'</strong></h6></div>'+
         '<div class="col s6"><p>Year Published : '+ year +'</p>'+
         '<i> doi : '+ doi +'</i></div>'+
-        '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="/add/library?search='+globalSearchKeyword+'&title='+title+'&year='+year+'&'+
+        '<div class="col s12 m6 l3"><a class="btn bg-transparent" style="background-color:#3b5998" href="/add/library?search='+globalSearchKeyword+'&title='+title+'&year='+year+'&'+
         'doi='+doi+'&url='+url+'&description='+description+'">'+
         '<i class="material-icons">add</i></a><br><small>Add to Groups</small></div>'+
-            '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="'+ url +'">'+
+            '<div class="col s12 m6 l3"><a class="btn bg-transparent" href="'+ url +'" style="background-color:#3b5998">'+
             '<i class="material-icons">article</i></a><br><small>View Reference</small></div>'+            
             '</div><blockquote>'+ description +'</blockquote></div>');  
     }

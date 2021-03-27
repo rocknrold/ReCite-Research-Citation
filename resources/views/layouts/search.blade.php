@@ -1,4 +1,4 @@
-<nav style="background-color:black">
+<nav style="background-color:#8b9dc3">
     <form class="nav-wrapper" action="{{ route('core.search') }}" method="GET" id="search-library">
     {{-- @csrf --}}
     <div class="input-field">

@@ -1,4 +1,5 @@
 $(function(){
+    $('body').css({'background-image' : 'none'});
 
     $('.row').on('click', '.articleLike', function(e){
         e.preventDefault();
@@ -7,12 +8,12 @@ $(function(){
         $('[data-id="'+id+'"]').find('span').html(parseInt( $('[data-id="'+id+'"]').find('span').text()) + 1);
 
         const dataid = id.split('');
-        if(id == "dislike_"+dataid[8]+"") {
+        if(id == "dislike_"+dataid.slice(8,).join("")+"") {
             $.ajax({
                 type:'GET',
                 url:'core/like/',
                 data: {
-                    dislikes:dataid[8],
+                    dislikes:dataid.slice(8,).join(""),
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -20,6 +21,7 @@ $(function(){
                 success:function(response){
                     Materialize.toast('Disliked',500);
                     $('[data-id="'+id+'"]').find('i').css('color','green');
+                    $('[data-id="'+id+'"]').addClass('btn-flat disabled');
                 }
             });
         } 
@@ -28,7 +30,7 @@ $(function(){
                 type:'GET',
                 url:'core/like/',
                 data: {
-                    likes:dataid[5],
+                    likes:dataid.slice(5,).join(""),
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -36,6 +38,7 @@ $(function(){
                 success:function(response){
                     Materialize.toast('Liked',500);
                     $('[data-id="'+id+'"]').find('i').css('color','green');
+                    $('[data-id="'+id+'"]').addClass('btn-flat disabled');
                 }
             });
         }

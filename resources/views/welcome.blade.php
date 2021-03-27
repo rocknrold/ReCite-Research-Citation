@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>CRW</title>
+<title>ReCite</title>
 <link rel="shortcut icon" href="{{ asset('crw-logo.ico')}}" type="image/x-icon">
 
 <!-- Fonts -->
