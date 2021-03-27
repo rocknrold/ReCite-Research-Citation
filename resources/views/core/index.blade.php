@@ -13,7 +13,7 @@
              <div class="input-field">
                 <input id="yearTo" type="number" class="validate" placeholder="2021" min="1900" max="2021" step="1">
                 <label for="yearTo">To</label>
-              <button class="btn waves-effect waves-light black" type="submit" name="action" id="searchFilter">Apply</button>
+              <button class="btn waves-effect waves-light" style="background-color:#3b5998" type="submit" name="action" id="searchFilter">Apply</button>
             </div>
         </li>
         <li><h1 class="divider"></h1></li>
@@ -28,7 +28,7 @@
                 <input type="checkbox" class="filled-in" id="documentRequired"/>
                 <label for="documentRequired">Document</label>
             </p>
-            <button class="btn waves-effect waves-light black" type="submit" name="action" id="requiredFilter">Apply</button>
+            <button class="btn waves-effect waves-light" style="background-color:#3b5998" type="submit" name="action" id="requiredFilter">Apply</button>
         </form>
         <li>
         </li>
@@ -36,7 +36,7 @@
     </div>
 @endsection
 @section('content')
-<div class="center-search">
+<div class="center-search" id="jumpToSearch">
     @include('layouts.search')
 </div>
 <div>
@@ -55,8 +55,8 @@
             <div class="col s12"><h6><strong>Title : sample</strong></h6></div>
             <div class="col s12"><h6><strong>Author : sample, sample, sample</strong></h6></div>
             <div class="col s6"><p>Year Published : 2021<i> oia </i></p></div>
-            <div class="col s12 m6 l3"><button class="bg-white tooltipped" data-position="bottom" data-tooltip="I am a tooltip"><i class="material-icons">add</i></button></div>
-            <div class="col s12 m6 l3"><a class="btn bg-transparent"><i class="material-icons">article</i></a></div>       
+            <div class="col s12 m6 l3"><button class="bg-white tooltipped" data-position="bottom" data-tooltip="I am a tooltip" style="background-color:#3b5998"><i class="material-icons">add</i></button></div>
+            <div class="col s12 m6 l3"><a class="btn bg-transparent" style="background-color:#3b5998"><i class="material-icons">article</i></a></div>       
         </div>
         <blockquote>
         This is an where research description is placed.
@@ -66,13 +66,18 @@
 </div>
     <div class="divider"></div>
     <div class="col s12">
-        <a href="#" class="btn" id="searchLibrary-back"><i class="material-icons">arrow_back_ios</i></a>
+        <a href="#" class="btn" style="background-color:#3b5998" id="searchLibrary-back"><i class="material-icons">arrow_back_ios</i></a>
         <p id="currentPage" class="btn-flat disabled">1</p>
-        <a class="btn" href="#" id="searchLibrary-next"><i class="material-icons">navigate_next</i></a>
+        <a class="btn" href="#" style="background-color:#3b5998" id="searchLibrary-next"><i class="material-icons">arrow_forward_ios</i></a>
     </div>
     </div>
 </div>
 <br>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large" href="#jumpToSearch" style="background-color:#3b5998">
+      <i class="large material-icons">arrow_drop_up</i>
+    </a>
+</div>
 @endsection
 @section('scripts')
 <script src="{{asset('js/routes.js')}}"></script>

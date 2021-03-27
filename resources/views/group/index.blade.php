@@ -11,7 +11,7 @@
     </div>
 @else
     
-<div style="padding-top:10%;display:block;">
+<div style="padding-top:10%;display:block;" id="jumpTo">
     @foreach($items as $key => $value)
 <div class="row">
  <div class="col s12">
@@ -42,6 +42,11 @@
     @endforeach
 </div>
 @endif
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large" href="#jumpTo" style="background-color:#3b5998">
+      <i class="large material-icons">arrow_drop_up</i>
+    </a>
+</div>
 @endsection
 @section('scripts')
 <script src="{{asset('js/groups.js')}}"></script>
