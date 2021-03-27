@@ -51,6 +51,7 @@
             Combine with Oxford Dictionary for word references. And a useful integration from OpenCitations and DataCite
             enables creation of citations for bibliographic purposes.
         </blockquote>
+        <span><h6>Github Repository : <b><a href="https://github.com/rocknrold/ReCite-Research-Citation">https://github.com/rocknrold/ReCite-Research-Citation</a></b></h6></span>
     <div class="divider"></div>
     <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
  padding-bottom: 48px; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
@@ -64,7 +65,7 @@
         <h4><b>ReCite API</b></h4>
         <span><h6>Pulls data from own database</h6></span>
             <div id='getapi'>
-            <h5>GET Request : Research Likes </h5>
+            <h5>GET Request : Research Likes and Metadata </h5>
             <p>This query searches for likes or relevance of a research based on our per user reviews.</p>
               <div class="row">
     <div class="col s12">
