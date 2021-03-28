@@ -15,6 +15,7 @@ class CreateCrwCoresTable extends Migration
     {
         Schema::create('crw_cores', function (Blueprint $table) {
             $table->id('core_id');
+            $table->integer('user_id');
             $table->string('core_title');
             $table->year('core_yearPublished')->nullable();
             $table->longText('core_description')->nullable();
@@ -22,6 +23,7 @@ class CreateCrwCoresTable extends Migration
             $table->string('core_downloadUrl')->nullable();
             $table->integer('likes');
             $table->integer('dislikes');
+            $table->enum('visibility', ['private', 'public']);
             $table->timestamps();
         });
     }

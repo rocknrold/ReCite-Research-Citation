@@ -7,6 +7,7 @@ use App\Models\Crw_search;
 use App\Models\Crw_word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Auth;
 
 class CrwCoreController extends Controller
 {
@@ -99,5 +100,21 @@ class CrwCoreController extends Controller
         // dd([$request, $request->post('query'),$request->post('yearFrom'),$request->post('yearTo'),$request->post('currentPage')]);
         $response = Crw_core::coreFilterYearSearch($request->post('query'),intval($request->post('yearFrom')),intval($request->post('yearTo')),intval($request->post('currentPage')));
         return $response;
+    }
+
+    public function profileLibraryCollections(Request $request)
+    {
+        $result = Crw_core::with(['coresearch'])->where('user_id', Auth::id())->paginate(10);
+
+        return view('profile.collection')->with(['auth_id'=>Auth::id(), 'auth_name'=>Auth()->user()->name,
+                                                'auth_email'=>Auth()->user()->email,'cores'=>$result]);
+    }
+
+    public function changeVisibility(Request $request)
+    {
+        if($request->ajax()){
+            $result = Crw_core::where('core_id', $request->id)->update(['visibility' => $request->status]);
+            return response()->json($result);
+        }
     }
 }

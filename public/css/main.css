@@ -31,3 +31,15 @@ body {
 .navCustom:hover {
   background-color: rgba(0, 0, 0, 0) !important;
 }
+
+.user-menu {
+  position:fixed;
+  clear:both;
+  float:right;
+  top:10%;
+}
+
+[type="checkbox"].filled-in:checked+label:after {
+  border: 2px solid #3b5998;
+  background-color: #3b5998;
+}

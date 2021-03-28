@@ -30,7 +30,7 @@ class CrwCoresSearchController extends Controller
                 $ids[] = $coreid->crw_coresID;
             }
             
-            $cores = Crw_core::with(['corecitation'])->whereIn('core_id',$ids)->orderBy('likes', 'DESC')->get();
+            $cores = Crw_core::with(['corecitation'])->whereIn('core_id',$ids)->whereIn('visibility', ['public'])->orderBy('likes', 'DESC')->get();
             $items[$search->search_keyword] = $cores;
         }
         if(empty($items))

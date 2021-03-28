@@ -32,6 +32,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+
+Route::get('/logout',function(Request $request){
+    Auth::logout();
+    return redirect('/');
+})->name('viaGet.logout');
+
 require __DIR__.'/auth.php';
 
 Route::get('/search?', [CrwSearchController::class, 'index'])->name('core.index');
@@ -69,3 +75,8 @@ Route::get('/documentation', function(){
 // API ROUTES
 
 Route::get('/api/GET/research/likes',[ApiController::class, 'getRL'])->name('getRL.api');
+
+
+Route::get('/profile/library/collections/',[CrwCoreController::class, 'profileLibraryCollections']);
+
+Route::post('/core/visible/{id}', [CrwCoreController::class, 'changeVisibility']);
