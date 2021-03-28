@@ -41,12 +41,10 @@ Route::get('/search', [CrwSearchController::class, 'search'])->name('core.search
 Route::middleware(['direct.access'])->group(function () {
     Route::get('/search/library', [CrwCoreController::class, 'searchCoreLibrary']);
     Route::post('/search/library', [CrwCoreController::class, 'searchCoreLibrary'])->name('search.library');
+    
+    Route::get('/search/library-year', [CrwCoreController::class, 'filterYearSearch']);
     Route::post('/search/library-year', [CrwCoreController::class, 'filterYearSearch'])->name('search.libraryForYear');
 });
-
-Route::post('/trymiddleware',function(){
-    return view('/');
-})->middleware('direct.access');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/search/{word}/{id}', [CrwCoreController::class, 'nextPage'])->name('searchLibrary.next');
