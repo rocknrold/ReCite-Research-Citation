@@ -37,14 +37,26 @@ require __DIR__.'/auth.php';
 Route::get('/search?', [CrwSearchController::class, 'index'])->name('core.index');
 Route::get('/search', [CrwSearchController::class, 'search'])->name('core.search');
 
-Route::post('/search/library', [CrwCoreController::class, 'searchCoreLibrary'])->name('search.library');
-Route::post('/search/library-year', [CrwCoreController::class, 'filterYearSearch'])->name('search.libraryForYear');
-Route::get('/search/{word}/{id}', [CrwCoreController::class, 'nextPage'])->name('searchLibrary.next');
-Route::get('/search/{word}/{id}', [CrwCoreController::class, 'backPage'])->name('searchLibrary.back');
+
+Route::middleware(['direct.access'])->group(function () {
+    Route::get('/search/library', [CrwCoreController::class, 'searchCoreLibrary']);
+    Route::post('/search/library', [CrwCoreController::class, 'searchCoreLibrary'])->name('search.library');
+    Route::post('/search/library-year', [CrwCoreController::class, 'filterYearSearch'])->name('search.libraryForYear');
+});
+
+Route::post('/trymiddleware',function(){
+    return view('/');
+})->middleware('direct.access');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/search/{word}/{id}', [CrwCoreController::class, 'nextPage'])->name('searchLibrary.next');
+    Route::get('/search/{word}/{id}', [CrwCoreController::class, 'backPage'])->name('searchLibrary.back');
+    Route::get('/core/like',[CrwCoresSearchController::class, 'corelikes'])->name('crw.likes');
+});
+
 
 Route::get('/add/library',[CrwCoresSearchController::class, 'addToLibrary'])->middleware('auth')->name('add.libary');
 Route::get('/groups',[CrwCoresSearchController::class, 'groupsIndex'])->middleware('auth')->name('crw.index');
-Route::get('/core/like',[CrwCoresSearchController::class, 'corelikes'])->name('crw.likes');
 
 Route::get('/citations',[CrwCoreCitationController::class,'citationIndex'])->name('core.citation')->middleware('auth');
 Route::get('/citation/list',[CrwCoreCitationController::class,'citationList'])->name('crw.citation');
@@ -55,5 +67,7 @@ Route::get('/documentation', function(){
     return view('documentation');
 });
 
+
+// API ROUTES
 
 Route::get('/api/GET/research/likes',[ApiController::class, 'getRL'])->name('getRL.api');

@@ -17,6 +17,10 @@ class CrwCoreController extends Controller
      */
     public function searchCoreLibrary(Request $request)
     {
+        if(request()->isMethod('GET')){
+            return abort(404);
+        }else {
+
         $keyword= request()->post('query');
 
         $access_key = config('services.secrets.core');
@@ -67,7 +71,7 @@ class CrwCoreController extends Controller
                 $message = $msg;
         }
 
-        return response()->json($message);
+        return response()->json($message); }
     }
 
     public function nextPage(Request $request)
