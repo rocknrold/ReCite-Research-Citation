@@ -5,17 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use Auth;
 
 class Crw_core extends Model
 {
     use HasFactory;
-    protected $fillable = ['core_title', 
+    protected $fillable = [
+                            'user_id',
+                            'core_title', 
                             'core_yearPublished', 
                             'core_description', 
                             'core_doi', 
                             'core_downloadUrl',
                             'likes',
                             'dislikes',
+                            'visibility',
                             ];
 
     public static function validateLibraryResponse($lookup)
@@ -76,6 +80,7 @@ class Crw_core extends Model
             $getCreateId = $result->core_id;          
         } else {
             $newWord = Crw_core::create([
+                'user_id' => Auth::id(),
                 'core_title' => $title,
                 'core_yearPublished' => $year ,
                 'core_description' => $description,
