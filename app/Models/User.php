@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function usercore()
+    {
+        return $this->hasMany(Crw_usercore_view::class, 'user_id', 'id');
+    }
 }

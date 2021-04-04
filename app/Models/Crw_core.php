@@ -120,4 +120,5 @@ class Crw_core extends Model
     {
         return $this->hasOne(Crw_core_citation::class, 'crw_coresID', 'core_id');
     }
+
 }
