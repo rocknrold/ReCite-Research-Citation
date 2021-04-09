@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Crw_core;
 use App\Models\Crw_search;
 use App\Models\Crw_word;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Auth;
@@ -116,5 +117,12 @@ class CrwCoreController extends Controller
             $result = Crw_core::where('core_id', $request->id)->update(['visibility' => $request->status]);
             return response()->json($result);
         }
+    }
+
+    public function profileView(Request $request)
+    {
+        $result = User::where('id', Auth::id())->get();
+        // dd($result);
+        return view('profile.profile')->with('users',$result);
     }
 }

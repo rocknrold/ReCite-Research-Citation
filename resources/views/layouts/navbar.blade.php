@@ -24,7 +24,7 @@
     <li><a class="btn-floating indigo lighten-2" href="{{route('viaGet.logout')}}"><i class="material-icons">lock_open</i></a></li>
     {{-- <li><a class="btn-floating indigo lighten-2"><i class="material-icons">insert_chart</i></a></li> --}}
     <li><a class="btn-floating indigo lighten-2" href="/profile/library/collections/"><i class="material-icons">book</i></a></li>
-    <li><a class="btn-floating indigo lighten-2"><i class="material-icons">account_circle</i></a></li>
+    <li><a class="btn-floating indigo lighten-2" href="{{route('profile.view')}}"><i class="material-icons">account_circle</i></a></li>
     </ul>
 </div>
 @endif
