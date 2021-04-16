@@ -33,6 +33,6 @@ class CrwUsercoreGroup extends Migration
      */
     public function down()
     {
-        DB::statement("DROP VIEW crw_usercore_view;");
+        DB::statement("DROP VIEW crw_usercore_views;");
     }
 }

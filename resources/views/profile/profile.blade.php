@@ -3,10 +3,20 @@
 <div style="margin:auto;padding:5%;padding-top:10%;">
     <div class="row">
     @foreach($users as $user)
+    {{-- {{dd($user)}} --}}
             <h5><b>Profile</b></h5>
             <div class="divider"></div><br>
             <div class="row align-wrapper" style="width:200px;">
-              <img src="{{asset('images/no-profile.jpg')}}" alt="" class="circle responsive-img">
+                <span>
+                    <form enctype="multipart/form-data" action="{{route('update.useravatar')}}" method="POST">
+                        @csrf
+                        <label for="avatar">Change Avatar <i class="tiny material-icons">mode_edit</i></label>
+                        <input type="file" name="avatar" id="avatar" style="display:none"/>
+                        <button id="avatarUpload" type="submit" class="" style="background-color:#3b5998">save</button>
+                    </form>
+                    {{-- <img src="../images/no-profile.jpg" alt="" class="circle responsive-img"> --}}
+                    <img src="../storage/{{$user->poster}}" alt="" class="circle responsive-img" width="200px">
+                </span>
             </div>
             <div class="divider"></div>
             <span><h6>Name</h6></span>

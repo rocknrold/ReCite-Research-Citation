@@ -18,7 +18,7 @@
         <div class="col s12">
                 <ul class="collection with-header">
                     <li class="collection-item avatar">
-                            <img src="images/no-profile.jpg" alt="" class="circle">
+                            <img src="../storage/{{$value->poster}}" alt="" class="circle">
                             <span class="title">{{$value->name}}</span>
                             <p><i class="material-icons">gpp_good</i></p>
                             <p class="secondary-content"><i class="material-icons">public</i></p>

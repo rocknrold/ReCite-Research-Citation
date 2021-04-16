@@ -76,5 +76,41 @@ $(function(){
         }
     });
 
+    // var myAvatar = document.getElementById('avatar');
+    
+    // $('#btnAvatar').on('click',function(e){
+    //     // e.preventDefault();
+    //     document.body.onfocus = fileChecker;
+    //     $('#avatar').trigger('click');
+    // });
+
+    // function fileChecker(){
+    //     if($('#avatar').val() != 0){
+    //         if($('#avatarUpload').length === 0){
+    //             $('#divSaveAvatar').append('<button id="avatarUpload" type="submit" class="" style="background-color:#3b5998">save</button>');
+    //         }
+    //     }else {
+    //         Materialize.toast("File Chooser Cancelled",1000, 'red darken-4');
+    //     }
+    //     document.body.onfocus = null;
+    // }
+
+
+    // $('#avatarUpload').on('click',function(e){
+    //     e.preventDefault();
+    //     let myForm = document.getElementById('formAvatar');
+    //     let formData = new FormData(myForm);
+    //     $.ajax({
+    //         type:'POST',
+    //         url:'/profile/avatar',
+    //         data:formData,
+    //         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),},
+    //         // contentType:false,
+    //         // processData:false,
+    //         success:function(data){
+    //             console.log(data);
+    //         }
+    //     })
+    // })
 
 });

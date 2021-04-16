@@ -5,7 +5,7 @@
             <h5><b>Profile</b></h5>
             <div class="divider"></div><br>
             <div class="row valign-wrapper" style="width:200px;">
-              <img src="{{asset('images/no-profile.jpg')}}" alt="" class="circle responsive-img">
+              <img src="../../../storage/{{Auth::User()->poster}}" alt="" class="circle responsive-img" width="150px">
             </div>
             <div class="divider"></div>
             <span><h6>Name</h6></span><h5>{{$auth_name}}<span class="new badge blue" data-badge-caption="online"></span></h5>
