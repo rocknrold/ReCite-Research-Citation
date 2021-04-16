@@ -74,7 +74,7 @@ class Crw_core extends Model
 
     public static function addToCore($title,$year,$doi,$url,$description)
     {
-        $result = Crw_core::where('core_doi', $doi)->first();
+        $result = Crw_core::where('core_doi', $doi)->where('user_id', Auth::id())->first();
 
         if ($result) {
             $getCreateId = $result->core_id;          

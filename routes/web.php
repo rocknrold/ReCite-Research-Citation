@@ -86,6 +86,7 @@ Route::get('/api/GET/research/likes',[ApiController::class, 'getRL'])->name('get
 // USER ROUTES 
 Route::post('/profile/name', [UserController::class, 'nameUpdate'])->name('update.username');
 Route::post('/profile/email', [UserController::class, 'emailUpdate'])->name('update.useremail');
+Route::post('/profile/avatar', [UserController::class, 'avatarUpload'])->name('update.useravatar');
 
 Route::get('/profile/library/collections/',[CrwCoreController::class, 'profileLibraryCollections']);
 Route::post('/core/visible/{id}', [CrwCoreController::class, 'changeVisibility']);

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Auth;
 
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 class UserController extends Controller
 {
     /**
@@ -45,5 +47,17 @@ class UserController extends Controller
                 return response()->json(["msg"=>"success", "email"=>$request->email]);
             }
         }
+    }
+
+    public function avatarUpload(Request $request)
+    {
+        // dd($request->avatar);
+        // $user = User::find(Auth::id());
+        if($request->has('avatar')){
+            $user = User::where('id', Auth::id())->update(['poster' => $request->file('avatar')->store('uploads', 'public')]);
+        }else{
+            return redirect("/profile/view")->with('error', 'No avatar provided');
+        }
+        return redirect("/profile/view")->with('success', 'New Gift Added !');
     }
 }
