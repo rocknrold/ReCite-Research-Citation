@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CrwSearchController;
-use App\Http\Controllers\ApiController;
 use App\Http\Controllers\CrwCoreController;
 use App\Http\Controllers\CrwWordController;
 use App\Http\Controllers\CrwCoresSearchController;
@@ -76,11 +75,6 @@ Route::get('/word/list',[CrwWordController::class, 'showAll'])->name('words.list
 Route::get('/documentation', function(){
     return view('documentation');
 });
-
-
-// API ROUTES
-
-Route::get('/api/GET/research/likes',[ApiController::class, 'getRL'])->name('getRL.api');
 
 
 // USER ROUTES 
