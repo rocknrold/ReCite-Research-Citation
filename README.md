@@ -12,6 +12,22 @@
 3. Groups for certain topic <br>
 4. Listing and downloading contents <br>
 
+## SYSTEM REQUIREMENTS
+Note that because this does not contain virtualization softwares/technologies you have to deal with the dependencies issues
+<br>
+<code>PHP version :PHP 7.4.8 </code>
+<code>MySQL version : 10.4.13-MariaDB mariadb.org binary distribution</coode><br>
+
+## INSTALLATION/SETUP PROCDURES
+1. composer install
+2. composer update or install fails
+3. setup your env file copy and paste .env-example and rename to .env
+4. check database credentials and create new database if necessary
+5. php artisan migrate:fresh --seed
+6. php artisan serve 
+<br>
+Now you can view the poject HAPPY RESEARCHING!<br>
+
 ## Main Page
 ![1](https://user-images.githubusercontent.com/43779189/114821491-3c58d300-9df3-11eb-904e-d9dad42d2537.png)
 
