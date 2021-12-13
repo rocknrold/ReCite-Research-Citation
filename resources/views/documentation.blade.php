@@ -16,34 +16,6 @@
 <div style="padding:10%;" id="about">
     <div class="row">
       <div class="col s12"><h4><b>ABOUT</b><div class="divider"></div><br>ReCite ( Research Citation )Web Application</h4></div><div class="divider"></div>
-            <div class="col s6">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                        <div class="col s3">
-                            <img id="dev1" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                        </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                <b>Aaron Harold</b><br>Technological Univerisity of the Philippines<br>Application Developer
-                            <br><hr><i class="fab fa-github-square fa-2x"></i><a id="dev1_url"></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <div class="col s6">
-             <div class="card-panel grey lighten-5 z-depth-1">
-                <div class="row valign-wrapper">
-                    <div class="col s3">
-                        <img id="dev2" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                    </div>
-                    <div class="col s9">
-                        <span class="black-text">
-                            <b>Adrian Pusana</b> <br> Technological Univerisity of the Philippines<br>Application Developer
-                        <br><hr><i class="fab fa-github-square fa-2x"></i><a id="dev2_url"></a></span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
         <blockquote style="text-align:justify;">
         ReCite( Research Citation ) offers a free website for research citation with help of 
@@ -51,16 +23,8 @@
             Combine with Oxford Dictionary for word references. And a useful integration from OpenCitations and DataCite
             enables creation of citations for bibliographic purposes.
         </blockquote>
-        <span><h6>Github Repository : <b><a href="https://github.com/rocknrold/ReCite-Research-Citation">https://github.com/rocknrold/ReCite-Research-Citation</a></b></h6></span>
     <div class="divider"></div>
-    <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 48px; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAEZTtm6epo&#x2F;view?embed">
-  </iframe>
-</div>
-<div class="divider"></div>
+    <div class="divider"></div>
     <div id="recite">
         <h4><b>ReCite API</b></h4>
         <span><h6>Pulls data from own database</h6></span>
